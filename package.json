@@ -1,0 +1,36 @@
+{
+  "name": "availability-api-assessment",
+  "version": "1.0.0",
+  "description": "Technical assessment: Build an availability API with 3rd party integration",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "migrate:make": "knex migrate:make --knexfile knexfile.ts",
+    "migrate:latest": "knex migrate:latest --knexfile knexfile.ts",
+    "migrate:rollback": "knex migrate:rollback --knexfile knexfile.ts",
+    "mock-api": "tsx mock-api/server.ts",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.19",
+    "@types/supertest": "^6.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "knex": "^3.1.0",
+    "pg": "^8.11.3",
+    "sqlite3": "^5.1.7"
+  }
+}
