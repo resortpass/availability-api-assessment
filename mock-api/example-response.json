@@ -1,0 +1,174 @@
+{
+  "provider": "SpaBooking",
+  "services": [
+    {
+      "serviceId": "spa-001",
+      "serviceName": "60-Minute Swedish Massage",
+      "duration": 60,
+      "price": 120.00,
+      "currency": "USD"
+    },
+    {
+      "serviceId": "spa-002",
+      "serviceName": "90-Minute Deep Tissue Massage",
+      "duration": 90,
+      "price": 165.00,
+      "currency": "USD"
+    },
+    {
+      "serviceId": "spa-003",
+      "serviceName": "30-Minute Express Facial",
+      "duration": 30,
+      "price": 75.00,
+      "currency": "USD"
+    }
+  ],
+  "availability": {
+    "2024-03-15": {
+      "spa-001": {
+        "slots": [
+          {
+            "startTime": "09:00",
+            "endTime": "10:00",
+            "available": true,
+            "therapistId": "T001",
+            "therapistName": "Sarah Johnson"
+          },
+          {
+            "startTime": "10:00",
+            "endTime": "11:00",
+            "available": true,
+            "therapistId": "T002",
+            "therapistName": "Michael Chen"
+          },
+          {
+            "startTime": "11:00",
+            "endTime": "12:00",
+            "available": false,
+            "therapistId": "T001",
+            "therapistName": "Sarah Johnson"
+          },
+          {
+            "startTime": "14:00",
+            "endTime": "15:00",
+            "available": true,
+            "therapistId": "T001",
+            "therapistName": "Sarah Johnson"
+          },
+          {
+            "startTime": "15:00",
+            "endTime": "16:00",
+            "available": true,
+            "therapistId": "T002",
+            "therapistName": "Michael Chen"
+          },
+          {
+            "startTime": "16:30",
+            "endTime": "17:30",
+            "available": true,
+            "therapistId": "T001",
+            "therapistName": "Sarah Johnson"
+          }
+        ]
+      },
+      "spa-002": {
+        "slots": [
+          {
+            "startTime": "09:00",
+            "endTime": "10:30",
+            "available": true,
+            "therapistId": "T003",
+            "therapistName": "Emma Wilson"
+          },
+          {
+            "startTime": "13:00",
+            "endTime": "14:30",
+            "available": true,
+            "therapistId": "T003",
+            "therapistName": "Emma Wilson"
+          },
+          {
+            "startTime": "15:00",
+            "endTime": "16:30",
+            "available": false,
+            "therapistId": "T003",
+            "therapistName": "Emma Wilson"
+          }
+        ]
+      },
+      "spa-003": {
+        "slots": [
+          {
+            "startTime": "10:00",
+            "endTime": "10:30",
+            "available": true,
+            "therapistId": "T004",
+            "therapistName": "Lisa Anderson"
+          },
+          {
+            "startTime": "10:30",
+            "endTime": "11:00",
+            "available": true,
+            "therapistId": "T004",
+            "therapistName": "Lisa Anderson"
+          },
+          {
+            "startTime": "11:00",
+            "endTime": "11:30",
+            "available": true,
+            "therapistId": "T004",
+            "therapistName": "Lisa Anderson"
+          },
+          {
+            "startTime": "14:00",
+            "endTime": "14:30",
+            "available": false,
+            "therapistId": "T004",
+            "therapistName": "Lisa Anderson"
+          },
+          {
+            "startTime": "14:30",
+            "endTime": "15:00",
+            "available": true,
+            "therapistId": "T004",
+            "therapistName": "Lisa Anderson"
+          },
+          {
+            "startTime": "16:00",
+            "endTime": "16:30",
+            "available": true,
+            "therapistId": "T004",
+            "therapistName": "Lisa Anderson"
+          }
+        ]
+      }
+    },
+    "2024-03-16": {
+      "spa-001": {
+        "slots": [
+          {
+            "startTime": "09:00",
+            "endTime": "10:00",
+            "available": true,
+            "therapistId": "T001",
+            "therapistName": "Sarah Johnson"
+          },
+          {
+            "startTime": "10:00",
+            "endTime": "11:00",
+            "available": true,
+            "therapistId": "T001",
+            "therapistName": "Sarah Johnson"
+          },
+          {
+            "startTime": "14:00",
+            "endTime": "15:00",
+            "available": true,
+            "therapistId": "T002",
+            "therapistName": "Michael Chen"
+          }
+        ]
+      }
+    }
+  }
+}
