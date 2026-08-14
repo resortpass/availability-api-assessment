@@ -1,0 +1,67 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+      timezone: "America/New_York"
+    target-branch: "main"
+    groups:
+      testing:
+        patterns:
+          - "jest"
+          - "jest-*"
+          - "vitest"
+          - "@types/jest"
+          - "mocha"
+          - "chai"
+          - "sinon"
+        update-types:
+          - "minor"
+          - "patch"
+      linting:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "@typescript-eslint/*"
+          - "prettier"
+        update-types:
+          - "minor"
+          - "patch"
+      build:
+        patterns:
+          - "typescript"
+          - "esbuild"
+          - "tsx"
+          - "ts-node"
+        update-types:
+          - "minor"
+          - "patch"
+      minor-and-patch:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "eslint"
+          - "eslint-*"
+          - "@typescript-eslint/*"
+          - "typescript-eslint"
+          - "prettier"
+          - "typescript"
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+      timezone: "America/New_York"
+    target-branch: "main"
+    groups:
+      actions:
+        patterns:
+          - "*"
