@@ -4,10 +4,46 @@ Get up and running in 5 minutes.
 
 ## Prerequisites
 
+**Docker (Recommended):**
+- Docker Desktop or Docker + Docker Compose
+- That's it! No Node.js needed.
+
+**OR Local Development:**
 - Node.js 18+ and npm
 - Git
 
 ## Setup
+
+### With Docker (Easiest!)
+
+```bash
+# 1. Clone (or download) this repository
+git clone <repository-url>
+cd availability-api-assessment
+
+# 2. Start everything
+make start
+# Or: docker-compose up -d
+
+# 3. Test the health check
+curl http://localhost:3000/health
+
+# 4. View logs
+make logs
+# Or: docker-compose logs -f
+```
+
+**All commands with Docker:**
+- `make start` - Start services
+- `make stop` - Stop services
+- `make logs` - View logs
+- `make test` - Run tests
+- `make migrate-make NAME=your_migration` - Create migration
+- `make migrate` - Run migrations
+- `make shell` - Open shell in container
+- `make help` - See all commands
+
+### Without Docker
 
 ```bash
 # 1. Clone (or download) this repository

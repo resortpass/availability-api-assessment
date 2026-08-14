@@ -1,0 +1,22 @@
+FROM node:20-alpine
+
+# Install wget for healthcheck
+RUN apk add --no-cache wget
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy only what's needed for mock API
+COPY mock-api ./mock-api
+COPY tsconfig.json ./
+
+# Expose port
+EXPOSE 3001
+
+# Run mock API
+CMD ["npm", "run", "mock-api"]

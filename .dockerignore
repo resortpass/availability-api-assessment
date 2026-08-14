@@ -1,0 +1,15 @@
+node_modules
+dist
+*.sqlite3
+*.sqlite3-journal
+.env
+.env.local
+.git
+.gitignore
+README.md
+DESIGN.md
+HINTS.md
+EVALUATION_RUBRIC.md
+SAMPLE_DATA.md
+QUICKSTART.md
+coverage

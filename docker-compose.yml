@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # Mock 3rd party API
+  mock-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.mock
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./mock-api:/app/mock-api
+    networks:
+      - assessment-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/api/services"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Main application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src
+      - ./migrations:/app/migrations
+      - ./tests:/app/tests
+      - ./dev.sqlite3:/app/dev.sqlite3
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - THIRD_PARTY_API_URL=http://mock-api:3001
+    depends_on:
+      mock-api:
+        condition: service_healthy
+    networks:
+      - assessment-network
+    command: npm run dev
+
+  # PostgreSQL (optional - for candidates who want to use Postgres instead of SQLite)
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=availability_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - assessment-network
+    profiles:
+      - postgres
+
+networks:
+  assessment-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
