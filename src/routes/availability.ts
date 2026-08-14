@@ -12,7 +12,6 @@ router.get('/availability', async (req: Request, res: Response) => {
   try {
     const { productId, date } = req.query;
 
-    // Validate required parameters
     if (!productId || !date) {
       return res.status(400).json({
         error: 'Missing required parameters',
@@ -20,7 +19,6 @@ router.get('/availability', async (req: Request, res: Response) => {
       });
     }
 
-    // Validate date format (basic YYYY-MM-DD check)
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(date as string)) {
       return res.status(400).json({
@@ -29,7 +27,6 @@ router.get('/availability', async (req: Request, res: Response) => {
       });
     }
 
-    // Get availability
     const availability = await availabilityService.getAvailability(
       productId as string,
       date as string
