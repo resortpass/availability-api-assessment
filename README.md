@@ -4,6 +4,7 @@
 
 Build an API that provides availability information for products. The system currently supports basic products (like day passes), but now needs to integrate with a 3rd party API that provides time-slotted services (like massage appointments).
 
+**Time estimate:** 4-6 hours
 
 ## Problem Statement
 
@@ -13,7 +14,8 @@ Now you want to expand to offer services from a 3rd party provider that operates
 
 **Your task:** Design and implement a flexible availability API that:
 1. Handles both inventory-based products AND time-slotted services
-2. Provides a consistent API response regardless of the source
+2. Abstracts away 3rd party API details from your data model
+3. Provides a consistent API response regardless of the source
 
 ## Requirements
 
@@ -22,10 +24,12 @@ Now you want to expand to offer services from a 3rd party provider that operates
 Design your database schema to support:
 - **Internal products** with inventory counts (e.g., day passes, cabanas)
 - **External time-slotted services** from the 3rd party API
+- Should NOT leak 3rd party API specifics into your core data model
 - Should be extensible for future product types
 
 **You must:**
 - Create your own migration(s) using Knex.js
+- Document your schema design decisions in `DESIGN.md`
 
 ### 2. API Implementation
 
@@ -58,6 +62,7 @@ A mock 3rd party API is provided in `mock-api/`:
 **Integration requirements:**
 - Map 3rd party products to your internal data model
 - Handle 3rd party API failures gracefully
+- Don't expose 3rd party specifics in your API response
 
 ### 4. Testing
 
@@ -164,7 +169,9 @@ Your submission will be evaluated on:
 
 1. **Data Model Design (35%)**
    - Flexibility and extensibility
+   - Separation of concerns (no 3rd party leakage)
    - Proper use of database constraints and indexes
+   - Clear documentation of design decisions
 
 2. **API Design (25%)**
    - Consistent, intuitive response format
@@ -187,6 +194,7 @@ Your submission will be evaluated on:
 
 - Start with the data model - sketch it out on paper first
 - Think about how to represent "availability" in a way that works for both inventory and time slots
+- Consider using an adapter pattern for the 3rd party integration
 - Don't over-engineer - focus on the core requirements first
 - Document your assumptions in DESIGN.md
 

@@ -21,6 +21,7 @@ app.get('/api/services', (req, res) => {
   });
 });
 
+// Get availability for a specific service and date
 app.get('/api/availability/:serviceId', (req, res) => {
   const { serviceId } = req.params;
   const { date } = req.query;
@@ -34,6 +35,7 @@ app.get('/api/availability/:serviceId', (req, res) => {
 
   const dateStr = date as string;
 
+  // Simulate random API failures (10% of the time)
   if (Math.random() < 0.1) {
     return res.status(503).json({
       success: false,
@@ -41,6 +43,7 @@ app.get('/api/availability/:serviceId', (req, res) => {
     });
   }
 
+  // Check if service exists
   const service = mockData.services.find(s => s.serviceId === serviceId);
   if (!service) {
     return res.status(404).json({
@@ -49,6 +52,7 @@ app.get('/api/availability/:serviceId', (req, res) => {
     });
   }
 
+  // Get availability for the date
   const dateAvailability = mockData.availability[dateStr as keyof typeof mockData.availability];
   if (!dateAvailability) {
     return res.json({
@@ -78,6 +82,7 @@ app.get('/api/availability/:serviceId', (req, res) => {
   });
 });
 
+// Get all availability for a date
 app.get('/api/availability', (req, res) => {
   const { date } = req.query;
 
@@ -101,6 +106,7 @@ app.get('/api/availability', (req, res) => {
     });
   }
 
+  // Transform the data to include service details
   const services = Object.keys(dateAvailability).map(serviceId => {
     const service = mockData.services.find(s => s.serviceId === serviceId);
     const slots = dateAvailability[serviceId as keyof typeof dateAvailability];
