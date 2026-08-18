@@ -1,215 +1,173 @@
-# Availability API - Technical Assessment
+# Availability API — Live Coding Exercise
 
 ## Overview
 
-Build an API that provides availability information for products. The system currently supports basic products (like day passes), but now needs to integrate with a 3rd party API that provides time-slotted services (like massage appointments).
+This is a live pairing exercise. You'll work through it with an interviewer over about 60 minutes of hands-on time. Think out loud, ask questions, and treat your interviewer like a teammate — assumptions are fine as long as you say them out loud.
 
-**Time estimate:** 4-6 hours
+**The problem:** Your company sells products at resort properties. Today the system handles simple inventory products with a daily count (e.g., "Pool Day Pass — 35 of 50 available on 2024-03-15"). Now you're adding spa services from a 3rd-party provider that operate on time slots (e.g., "60-Minute Swedish Massage — available at 09:00, 10:00, 14:00"). Your job is to integrate the 3rd-party data and serve both product types from one consistent API.
 
-## Problem Statement
+## What's Provided
 
-Your company offers various products at resort properties. Currently, you have simple products with daily availability (e.g., "Pool Day Pass - 10 available on 2024-03-15").
+- **Database schema** — all four tables, already migrated (see below). You don't need to design the schema, but you may add migrations if your design needs them.
+- **Seed data** — internal products with inventory, plus catalog rows for the spa services (see [Seeded Data](#seeded-data)).
+- **A working availability endpoint** — `GET /api/availability` already serves inventory-based products.
+- **A mock 3rd-party API** — the SpaBooking service, running on port 3001. Its contract is documented in [`mock-api/API.md`](mock-api/API.md).
+- **Test scaffolding** — Jest + supertest are wired up, with a DB helper, passing examples, and an example of stubbing the 3rd-party HTTP API with nock.
 
-Now you want to expand to offer services from a 3rd party provider that operates on time slots (e.g., "60-min Massage - available at 10:00 AM, 2:00 PM, 4:30 PM").
+## Database Schema
 
-**Your task:** Design and implement a flexible availability API that:
-1. Handles both inventory-based products AND time-slotted services
-2. Abstracts away 3rd party API details from your data model
-3. Provides a consistent API response regardless of the source
+Four tables exist via the migrations in `migrations/`:
 
-## Requirements
+**`products`** — the product catalog (both internal products and spa services live here)
 
-### 1. Data Model Design
+| Column | Type | Notes |
+|---|---|---|
+| id | increments | PK |
+| external_id | string | unique — the **public** product ID (e.g. `pool-pass-001`) |
+| name, description | string, text | |
+| base_price, currency | decimal, string(3) | |
+| active | boolean | default true |
+| created_at, updated_at | timestamps | |
 
-Design your database schema to support:
-- **Internal products** with inventory counts (e.g., day passes, cabanas)
-- **External time-slotted services** from the 3rd party API
-- Should NOT leak 3rd party API specifics into your core data model
-- Should be extensible for future product types
+**`inventory`** — daily counts for inventory-based products
 
-**You must:**
-- Create your own migration(s) using Knex.js
-- Document your schema design decisions in `DESIGN.md`
+| Column | Type | Notes |
+|---|---|---|
+| id | increments | PK |
+| product_id | FK → products | cascade delete |
+| date | date | unique with product_id |
+| total_quantity, available_quantity, reserved_quantity | integer | |
+| created_at, updated_at | timestamps | |
 
-### 2. API Implementation
+**`product_timeslots`** — time-slot availability for slotted products
 
-Implement the following endpoint:
+| Column | Type | Notes |
+|---|---|---|
+| id | increments | PK |
+| product_id | FK → products | cascade delete |
+| date | date | indexed |
+| start_time, end_time | time | `HH:MM` |
+| available | boolean | default true |
+| created_at, updated_at | timestamps | |
 
-```
-GET /api/availability?productId={id}&date={YYYY-MM-DD}
-```
+Note there is deliberately **no** unique constraint on (product_id, date, start_time) — the same service can be offered by multiple providers at the same time.
 
-**Response format (design your own):**
-```json
-{
-  "productId": "...",
-  "productName": "...",
-  "date": "2024-03-15",
-  "availability": [
-    // Your design here - should work for both:
-    // - inventory-based products (e.g., "10 available")
-    // - time-slotted services (e.g., "available at 10:00, 14:00, 16:30")
-  ]
-}
-```
+**`product_timeslot_details`** — 1:1 extension of a timeslot row for provider-specific detail
 
-### 3. 3rd Party Integration
+| Column | Type | Notes |
+|---|---|---|
+| product_timeslot_id | FK → product_timeslots | PK, cascade delete |
+| description | text | nullable |
+| provider_name, provider_id | string | nullable |
+| gender | string | nullable |
+| external_id | string | nullable, indexed |
+| created_at, updated_at | timestamps | |
 
-A mock 3rd party API is provided in `mock-api/`:
-- See `mock-api/example-response.json` for the response format
-- Run `npm run mock-api` to start the mock server on `http://localhost:3001`
+One thing is **intentionally left open**: how the 3rd party's service IDs (e.g. `spa-001`) map to your `products` rows. That's a design decision for you — a constant map, a new column, a new table, whatever you think is right.
 
-**Integration requirements:**
-- Map 3rd party products to your internal data model
-- Handle 3rd party API failures gracefully
-- Don't expose 3rd party specifics in your API response
+## Your Tasks
 
-### 4. Testing
+1. **Extend the availability endpoint.** `GET /api/availability?productId={id}&date={YYYY-MM-DD}` should also serve time-slotted products from `product_timeslots` (+ details), returning **one consistent response shape** for both product types. The response format is your design.
+2. **Build the 3rd-party integration.** Fetch availability from the mock SpaBooking API and populate `product_timeslots` / `product_timeslot_details`. A sync endpoint, a script, or on-demand fetching — your choice. The vendor payload is noisy; map only what the schema needs and discard the rest. Decide how serviceId → product mapping works.
+3. **Handle 3rd-party failures gracefully.** The mock API can simulate failures deterministically (see `mock-api/API.md`).
+4. **Add tests** as you go — the scaffolding in `tests/` is there to make this cheap.
 
-Write tests that demonstrate:
-- Availability queries for internal products work correctly
-- Availability queries for 3rd party products work correctly
-- Your API returns consistent responses for both types
-- Error handling (3rd party API down, invalid dates, etc.)
+**Stretch ideas** (if there's time, or for discussion): a refresh/caching strategy for 3rd-party data, date-range queries, avoiding N+1 queries.
 
 ## Getting Started
 
-### Option 1: Docker (Recommended - No Dependencies Required!)
-
-**Prerequisites:** Docker and Docker Compose only
+### Option 1: Docker
 
 ```bash
-# Start everything (app + mock API)
-make start
-
-# Or manually:
-docker-compose up -d
-
-# Check services are running
-make check
-
-# View logs
-make logs
-
-# Create a migration
-make migrate-make NAME=create_initial_schema
-
-# Edit the migration file in migrations/, then run:
-make migrate
-
-# Run tests
-make test
-
-# Stop everything
-make stop
+make start        # start app (:3000) + mock API (:3001)
+make migrate      # run migrations
+make seed         # seed the database
+make test         # run tests
+make stop         # stop everything
 ```
 
-Your services will be available at:
-- Main API: http://localhost:3000
-- Mock API: http://localhost:3001
+`make help` lists everything else. If you run `docker-compose up` directly instead of `make start`, run `touch dev.sqlite3` first — Docker otherwise creates that bind mount as a directory.
 
-See `Makefile` for all available commands (`make help`).
+### Option 2: Local (Node.js 18+)
 
-### Option 2: Local Development (Requires Node.js 18+)
+```bash
+npm install
+npm run migrate:latest    # run migrations
+npm run seed:run          # seed the database
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+npm run mock-api          # terminal 1: mock 3rd-party API on :3001
+npm run dev               # terminal 2: your API on :3000
 
-2. **Set up your database:**
-   ```bash
-   # Create your first migration
-   npm run migrate:make create_initial_schema
+npm test                  # run tests
+```
 
-   # Edit the migration file in migrations/
-   # Then run it:
-   npm run migrate:latest
-   ```
+### Sanity checks
 
-3. **Start the mock 3rd party API:**
-   ```bash
-   npm run mock-api
-   # Runs on http://localhost:3001
-   ```
+```bash
+curl http://localhost:3000/health
 
-4. **Start your API:**
-   ```bash
-   npm run dev
-   # Your API should run on http://localhost:3000
-   ```
+# Seeded inventory product — works out of the box:
+curl "http://localhost:3000/api/availability?productId=pool-pass-001&date=2024-03-15"
 
-5. **Run tests:**
-   ```bash
-   npm test
-   ```
+# The mock 3rd-party API:
+curl "http://localhost:3001/api/availability/spa-001?date=2024-03-15"
+```
+
+## Seeded Data
+
+Internal inventory products (with inventory rows for **2024-03-15**):
+
+| external_id | Name | Total | Available |
+|---|---|---|---|
+| `pool-pass-001` | Pool Day Pass - Weekday | 50 | 35 |
+| `cabana-001` | Poolside Cabana | 10 | 3 |
+| `gym-pass-001` | Fitness Center Day Pass | 100 | 87 |
+
+Spa catalog products (seeded in `products`, but with **no timeslot data yet** — populating that from the 3rd-party API is your job):
+
+| external_id | Name |
+|---|---|
+| `massage-swedish-60` | 60-Minute Swedish Massage |
+| `massage-deep-90` | 90-Minute Deep Tissue Massage |
+| `facial-express-30` | 30-Minute Express Facial |
+
+The mock API serves slot data for `2024-03-15` and `2024-03-16`.
 
 ## Project Structure
 
 ```
 .
 ├── src/
-│   ├── index.ts              # Express app entry point (basic setup provided)
-│   ├── routes/               # Your API routes
+│   ├── index.ts              # Express app entry point
+│   ├── db.ts                 # Shared knex instance
+│   ├── routes/               # API routes (availability route provided)
 │   ├── services/             # Business logic
-│   ├── repositories/         # Database access
+│   ├── repositories/         # Database access (product, inventory, timeslot repos provided)
 │   └── types/                # TypeScript types
-├── migrations/               # Knex migrations (you create these)
+├── migrations/               # Knex migrations (all four tables provided)
+├── seeds/                    # Seed data
 ├── mock-api/
-│   ├── server.ts             # Mock 3rd party API server
-│   └── example-response.json # Sample 3rd party response
-├── tests/                    # Your tests
-├── knexfile.ts               # Database configuration
-└── DESIGN.md                 # Document your design decisions here
+│   ├── server.ts             # Mock 3rd-party SpaBooking API
+│   ├── API.md                # Its API contract — read this
+│   └── example-response.json # Sample payload
+├── tests/                    # Jest + supertest scaffolding
+└── DESIGN.md                 # Jot your decisions here as you go
 ```
 
-## Evaluation Criteria
+## Testing
 
-Your submission will be evaluated on:
+```bash
+npm test          # or: make test
+```
 
-1. **Data Model Design (35%)**
-   - Flexibility and extensibility
-   - Separation of concerns (no 3rd party leakage)
-   - Proper use of database constraints and indexes
-   - Clear documentation of design decisions
+Tests run against an in-memory SQLite database that is migrated and seeded by `tests/helpers/db.ts`. Look at the existing examples for hitting the API with supertest and for stubbing the 3rd-party API with nock.
 
-2. **API Design (25%)**
-   - Consistent, intuitive response format
-   - Proper HTTP semantics
-   - Error handling
-   - Response time considerations
+## Common Issues
 
-3. **Code Quality (25%)**
-   - Clean, readable code
-   - Proper separation of concerns
-   - TypeScript usage
-   - Error handling
+**Port already in use?** Start on another port: `PORT=3002 npm run dev`. (The mock API is pinned to 3001.)
 
-4. **Testing (15%)**
-   - Test coverage
-   - Test quality and clarity
-   - Edge case handling
+**Migration fails?** `npm run migrate:rollback`, fix, then `npm run migrate:latest`.
 
-## Tips
+**Mock API not responding?** Make sure `npm run mock-api` is running — you should see it listening on http://localhost:3001.
 
-- Start with the data model - sketch it out on paper first
-- Think about how to represent "availability" in a way that works for both inventory and time slots
-- Consider using an adapter pattern for the 3rd party integration
-- Don't over-engineer - focus on the core requirements first
-- Document your assumptions in DESIGN.md
-
-## Submission
-
-Please provide:
-1. All source code
-2. `DESIGN.md` with your design decisions and tradeoffs
-3. Instructions for running your solution (if different from above)
-4. Any assumptions you made
-
-## Questions?
-
-Document any assumptions in `DESIGN.md`. In a real assessment, you would have the opportunity to ask clarifying questions.
-
----
-
-**Note:** This is a technical assessment. Focus on demonstrating your ability to design extensible systems, integrate with external APIs, and write clean, maintainable code.
+**TypeScript errors?** `npm test` type-checks everything it touches via ts-jest, and your editor's TypeScript server will flag issues as you edit. (`npm run build` isn't used in this exercise.)

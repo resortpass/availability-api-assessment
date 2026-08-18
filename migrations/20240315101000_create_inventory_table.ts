@@ -15,7 +15,7 @@ export async function up(knex: Knex): Promise<void> {
     table.index(['date']);
     table.index(['product_id', 'date']);
 
-    // Constraint to ensure available + reserved <= total
+    // Sanity checks: quantities can never go negative
     table.check('available_quantity >= 0');
     table.check('reserved_quantity >= 0');
   });

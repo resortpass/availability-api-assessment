@@ -1,4 +1,4 @@
-.PHONY: help start stop build clean logs test migrate shell
+.PHONY: help start stop build clean logs test migrate seed shell
 
 help: ## Show this help message
 	@echo 'Usage: make [target]'
@@ -7,6 +7,7 @@ help: ## Show this help message
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  %-15s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 start: ## Start all services (app + mock API)
+	@touch dev.sqlite3
 	docker-compose up -d
 	@echo "✅ Services started!"
 	@echo "   Main API:  http://localhost:3000"
@@ -15,6 +16,7 @@ start: ## Start all services (app + mock API)
 	@echo "Run 'make logs' to view logs"
 
 start-with-postgres: ## Start with PostgreSQL instead of SQLite
+	@touch dev.sqlite3
 	docker-compose --profile postgres up -d
 	@echo "✅ Services started with PostgreSQL!"
 	@echo "   Main API:   http://localhost:3000"
@@ -51,6 +53,9 @@ migrate: ## Run migrations
 
 migrate-rollback: ## Rollback last migration
 	docker-compose exec app npm run migrate:rollback
+
+seed: ## Run database seeds
+	docker-compose exec app npm run seed:run
 
 shell: ## Open shell in app container
 	docker-compose exec app sh

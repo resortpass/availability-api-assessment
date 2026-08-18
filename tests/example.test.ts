@@ -8,10 +8,3 @@ describe('Health Check', () => {
     expect(response.body).toEqual({ status: 'ok' });
   });
 });
-
-// TODO: Add your tests here
-// Examples:
-// - Test availability endpoint for internal products
-// - Test availability endpoint for 3rd party products
-// - Test error handling
-// - Test data transformations

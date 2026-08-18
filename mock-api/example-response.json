@@ -64,7 +64,7 @@
           {
             "startTime": "09:00",
             "endTime": "10:00",
-            "available": true,
+            "available": 7,
             "technicianId": "T001",
             "therapistId": "T001",
             "therapistName": "Sarah Johnson",

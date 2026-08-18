@@ -1,31 +1,23 @@
-# Design Decisions
+# Design Notes
 
-## Data Model
+Lightweight notes for the live session — bullet points are fine. Jot decisions down as you make them so we can discuss the tradeoffs afterwards.
 
-_Document your schema design here. Explain:_
-- What tables/entities did you create?
-- How do you represent internal vs external products?
-- How do you handle availability for different product types?
-- What indexes did you add and why?
-- What constraints did you add and why?
+## Assumptions
 
-## API Design
+_Anything you decided to assume rather than ask about (timezones, stale data tolerance, etc.)._
 
-_Document your API decisions here. Explain:_
-- What response format did you choose and why?
-- How do you represent availability consistently?
-- What error codes do you return and when?
+## serviceId → product mapping
 
-## 3rd Party Integration
+_How does `spa-001` relate to a `products` row? Where does that mapping live, and why?_
 
-_Document your integration approach here. Explain:_
-- How do you map 3rd party products to your data model?
-- How do you handle failures?
-- Where do you cache or store 3rd party data?
+## API response format
 
-## Tradeoffs & Future Improvements
+_What shape did you choose for `GET /api/availability`, and how does it stay consistent across inventory and time-slotted products?_
 
-_Document:_
-- What tradeoffs did you make?
-- What would you do differently with more time?
-- How would this scale?
+## Error handling
+
+_What happens when the 3rd-party API is down or returns something unexpected? What does the client see?_
+
+## With more time
+
+_What would you do next, or differently?_
