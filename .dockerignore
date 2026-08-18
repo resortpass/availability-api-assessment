@@ -7,6 +7,5 @@ dist
 .git
 .gitignore
 README.md
-DESIGN.md
 rubric/
 coverage

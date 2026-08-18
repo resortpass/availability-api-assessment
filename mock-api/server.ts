@@ -1,5 +1,5 @@
 import express from 'express';
-import mockData from './example-response.json';
+import mockData from './data.json';
 
 const app = express();
 const PORT = 3001;
@@ -16,7 +16,8 @@ app.use(express.json());
  * This simulates an external SPA booking service API.
  * In the real world, this would be a completely separate service.
  *
- * See mock-api/API.md for the API contract.
+ * Backing data lives in mock-api/data.json; every response covers a
+ * single day. See mock-api/API.md for the request schema.
  */
 
 /**

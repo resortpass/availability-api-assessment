@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a live pairing exercise. You'll work through it with an interviewer over about 60 minutes of hands-on time. Think out loud, ask questions, and treat your interviewer like a teammate — assumptions are fine as long as you say them out loud.
+This is a live pairing exercise. You'll work through it with an interviewer over about 60 minutes of hands-on time. Think out loud, ask questions, and treat your interviewer like a teammate — assumptions are fine as long as you say them out loud. There's no required design write-up: capture your design thinking however you like — scratch notes, code comments, or just talking it through.
 
 **The problem:** Your company sells products at resort properties. Today the system handles simple inventory products with a daily count (e.g., "Pool Day Pass — 35 of 50 available on 2024-03-15"). Now you're adding spa services from a 3rd-party provider that operate on time slots (e.g., "60-Minute Swedish Massage — available at 09:00, 10:00, 14:00"). Your job is to integrate the 3rd-party data and serve both product types from one consistent API.
 
@@ -11,7 +11,7 @@ This is a live pairing exercise. You'll work through it with an interviewer over
 - **Database schema** — all four tables, already migrated (see below). You don't need to design the schema, but you may add migrations if your design needs them.
 - **Seed data** — internal products with inventory, plus catalog rows for the spa services (see [Seeded Data](#seeded-data)).
 - **A working availability endpoint** — `GET /api/availability` already serves inventory-based products.
-- **A mock 3rd-party API** — the SpaBooking service, running on port 3001. Its contract is documented in [`mock-api/API.md`](mock-api/API.md).
+- **A mock 3rd-party API** — the SpaBooking service, running on port 3001. Its request schema is documented in [`mock-api/API.md`](mock-api/API.md).
 - **Test scaffolding** — Jest + supertest are wired up, with a DB helper, passing examples, and an example of stubbing the 3rd-party HTTP API with nock.
 
 ## Database Schema
@@ -50,8 +50,6 @@ Four tables exist via the migrations in `migrations/`:
 | available | boolean | default true |
 | created_at, updated_at | timestamps | |
 
-Note there is deliberately **no** unique constraint on (product_id, date, start_time) — the same service can be offered by multiple providers at the same time.
-
 **`product_timeslot_details`** — 1:1 extension of a timeslot row for provider-specific detail
 
 | Column | Type | Notes |
@@ -62,8 +60,6 @@ Note there is deliberately **no** unique constraint on (product_id, date, start_
 | gender | string | nullable |
 | external_id | string | nullable, indexed |
 | created_at, updated_at | timestamps | |
-
-One thing is **intentionally left open**: how the 3rd party's service IDs (e.g. `spa-001`) map to your `products` rows. That's a design decision for you — a constant map, a new column, a new table, whatever you think is right.
 
 ## Your Tasks
 
@@ -148,10 +144,10 @@ The mock API serves slot data for `2024-03-15` and `2024-03-16`.
 ├── seeds/                    # Seed data
 ├── mock-api/
 │   ├── server.ts             # Mock 3rd-party SpaBooking API
-│   ├── API.md                # Its API contract — read this
-│   └── example-response.json # Sample payload
-├── tests/                    # Jest + supertest scaffolding
-└── DESIGN.md                 # Jot your decisions here as you go
+│   ├── API.md                # Its request schema
+│   ├── data.json             # The mock server's backing data
+│   └── example-response.json # Sample response from the availability endpoint — worth a read
+└── tests/                    # Jest + supertest scaffolding
 ```
 
 ## Testing
