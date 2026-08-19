@@ -7,9 +7,5 @@ dist
 .git
 .gitignore
 README.md
-DESIGN.md
-HINTS.md
-EVALUATION_RUBRIC.md
-SAMPLE_DATA.md
-QUICKSTART.md
+rubric/
 coverage

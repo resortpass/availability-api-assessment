@@ -1,0 +1,168 @@
+{
+  "vendor": "ResortActivities",
+  "api_version": "1.2",
+  "generated_at": "2024-03-15T06:00:00+00:00",
+  "sessions": [
+    {
+      "session_id": "RA-88213",
+      "activity_code": "YOGA-SUNRISE",
+      "activity_name": "Sunrise Beach Yoga",
+      "starts_at": "2024-03-15T07:00:00-05:00",
+      "ends_at": "2024-03-15T08:00:00-05:00",
+      "capacity": 20,
+      "spots_remaining": 12,
+      "status": "open",
+      "instructor": {
+        "id": "INS-204",
+        "display_name": "Maya Torres",
+        "credentials": ["500hr RYT Yoga Alliance", "Meditation Coach Level 2"],
+        "avg_review_score": 9.4,
+        "review_count": 187
+      },
+      "location": {
+        "code": "BEACH-N",
+        "name": "North Beach"
+      },
+      "price_cents": 3500,
+      "currency_code": "USD"
+    },
+    {
+      "session_id": "RA-88215",
+      "activity_code": "YOGA-SUNRISE",
+      "activity_name": "Sunrise Beach Yoga",
+      "starts_at": "2024-03-15T08:15:00-05:00",
+      "ends_at": "2024-03-15T09:15:00-05:00",
+      "capacity": 20,
+      "spots_remaining": 6,
+      "status": "open",
+      "instructor": {
+        "id": "INS-219",
+        "display_name": "Priya Nair",
+        "credentials": ["200hr RYT Yoga Alliance", "Prenatal Yoga Certified"],
+        "avg_review_score": 8.9,
+        "review_count": 12
+      },
+      "location": {
+        "code": "BEACH-N",
+        "name": "North Beach"
+      },
+      "price_cents": 3500,
+      "currency_code": "USD"
+    },
+    {
+      "session_id": "RA-88214",
+      "activity_code": "YOGA-SUNRISE",
+      "activity_name": "Sunrise Beach Yoga",
+      "starts_at": "2024-03-15T09:00:00-05:00",
+      "ends_at": "2024-03-15T10:00:00-05:00",
+      "capacity": 20,
+      "spots_remaining": 0,
+      "status": "full",
+      "instructor": {
+        "id": "INS-204",
+        "display_name": "Maya Torres",
+        "credentials": ["500hr RYT Yoga Alliance", "Meditation Coach Level 2"],
+        "avg_review_score": 9.4,
+        "review_count": 187
+      },
+      "location": {
+        "code": "BEACH-N",
+        "name": "North Beach"
+      },
+      "price_cents": 3500,
+      "currency_code": "USD"
+    },
+    {
+      "session_id": "RA-88251",
+      "activity_code": "SNORKEL-TOUR",
+      "activity_name": "Guided Reef Snorkel Tour",
+      "starts_at": "2024-03-15T10:30:00-05:00",
+      "ends_at": "2024-03-15T12:00:00-05:00",
+      "capacity": 8,
+      "spots_remaining": 3,
+      "status": "open",
+      "instructor": {
+        "id": "INS-311",
+        "display_name": "Devon Clarke",
+        "credentials": ["PADI Rescue Diver", "Lifeguard & First Aid", "Marine Naturalist"],
+        "avg_review_score": 9.7,
+        "review_count": 243
+      },
+      "location": {
+        "code": "MARINA-DOCK-2",
+        "name": "Marina Dock 2"
+      },
+      "price_cents": 8900,
+      "currency_code": "USD"
+    },
+    {
+      "session_id": "RA-88270",
+      "activity_code": "MIXOLOGY-101",
+      "activity_name": "Poolside Mixology Class",
+      "starts_at": "2024-03-15T16:00:00-05:00",
+      "ends_at": "2024-03-15T17:00:00-05:00",
+      "capacity": 12,
+      "spots_remaining": 5,
+      "status": "cancelled",
+      "instructor": {
+        "id": "INS-407",
+        "display_name": "Jules Beaumont",
+        "credentials": ["Level 1 Sommelier", "TIPS Alcohol Safety"],
+        "avg_review_score": 9.1,
+        "review_count": 112
+      },
+      "location": {
+        "code": "POOL-BAR",
+        "name": "Main Pool Bar"
+      },
+      "price_cents": 6500,
+      "currency_code": "USD"
+    },
+    {
+      "session_id": "RA-88271",
+      "activity_code": "MIXOLOGY-101",
+      "activity_name": "Poolside Mixology Class",
+      "starts_at": "2024-03-15T17:30:00-05:00",
+      "ends_at": "2024-03-15T18:30:00-05:00",
+      "capacity": 12,
+      "spots_remaining": 9,
+      "status": "open",
+      "instructor": {
+        "id": "INS-407",
+        "display_name": "Jules Beaumont",
+        "credentials": ["Level 1 Sommelier", "TIPS Alcohol Safety"],
+        "avg_review_score": 9.1,
+        "review_count": 112
+      },
+      "location": {
+        "code": "POOL-BAR",
+        "name": "Main Pool Bar"
+      },
+      "price_cents": 6500,
+      "currency_code": "USD"
+    },
+    {
+      "session_id": "RA-88256",
+      "activity_code": "SNORKEL-TOUR",
+      "activity_name": "Night Reef Snorkel Tour",
+      "starts_at": "2024-03-15T20:00:00-05:00",
+      "ends_at": "2024-03-15T21:30:00-05:00",
+      "capacity": 6,
+      "spots_remaining": 4,
+      "status": "open",
+      "instructor": {
+        "id": "INS-311",
+        "display_name": "Devon Clarke",
+        "credentials": ["PADI Rescue Diver", "Lifeguard & First Aid", "Marine Naturalist"],
+        "avg_review_score": 9.7,
+        "review_count": 243
+      },
+      "location": {
+        "code": "MARINA-DOCK-2",
+        "name": "Marina Dock 2"
+      },
+      "price_cents": 8900,
+      "currency_code": "USD"
+    }
+  ]
+}

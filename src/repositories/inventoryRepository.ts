@@ -1,9 +1,5 @@
-import knex from 'knex';
-import knexConfig from '../../knexfile';
+import db from '../db';
 import { Inventory } from '../types';
-
-const environment = process.env.NODE_ENV || 'development';
-const db = knex(knexConfig[environment]);
 
 export class InventoryRepository {
   async findByProductAndDate(productId: number, date: string): Promise<Inventory | undefined> {

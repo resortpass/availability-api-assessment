@@ -1,15 +1,65 @@
 {
-  "success": true,
-  "data": {
-    "provider": "SpaBooking",
-    "date": "2024-03-15",
-    "services": [
-      {
-        "serviceId": "spa-001",
-        "serviceName": "60-Minute Swedish Massage",
-        "duration": 60,
-        "price": 120,
-        "currency": "USD",
+  "provider": "SpaBooking",
+  "providerVersion": "v2.1.4",
+  "services": [
+    {
+      "serviceId": "spa-001",
+      "serviceName": "60-Minute Swedish Massage",
+      "duration": 60,
+      "price": 120.00,
+      "originalPriceBeforeYield": 150.00,
+      "currency": "USD",
+      "category": "massage",
+      "preTime": 10,
+      "afterTime": 15,
+      "minAdvanceBooking": 120,
+      "maxAdvanceBooking": 10080,
+      "cancellationPolicy": "24_HOURS",
+      "requiresDeposit": false,
+      "depositAmount": 0.00,
+      "taxRate": 0.08,
+      "serviceLevel": "standard"
+    },
+    {
+      "serviceId": "spa-002",
+      "serviceName": "90-Minute Deep Tissue Massage",
+      "duration": 90,
+      "price": 165.00,
+      "originalPriceBeforeYield": 195.00,
+      "currency": "USD",
+      "category": "massage",
+      "preTime": 15,
+      "afterTime": 15,
+      "minAdvanceBooking": 240,
+      "maxAdvanceBooking": 10080,
+      "cancellationPolicy": "48_HOURS",
+      "requiresDeposit": true,
+      "depositAmount": 50.00,
+      "taxRate": 0.08,
+      "serviceLevel": "premium"
+    },
+    {
+      "serviceId": "spa-003",
+      "serviceName": "30-Minute Express Facial",
+      "duration": 30,
+      "price": 75.00,
+      "originalPriceBeforeYield": 85.00,
+      "currency": "USD",
+      "category": "facial",
+      "preTime": 5,
+      "afterTime": 10,
+      "minAdvanceBooking": 60,
+      "maxAdvanceBooking": 10080,
+      "cancellationPolicy": "24_HOURS",
+      "requiresDeposit": false,
+      "depositAmount": 0.00,
+      "taxRate": 0.08,
+      "serviceLevel": "express"
+    }
+  ],
+  "availability": {
+    "2024-03-15": {
+      "spa-001": {
         "slots": [
           {
             "startTime": "09:00",
@@ -20,11 +70,7 @@
             "firstName": "Sarah",
             "lastName": "Johnson",
             "gender": "female",
-            "certifications": [
-              "Swedish Massage",
-              "Hot Stone",
-              "Aromatherapy"
-            ],
+            "certifications": ["Swedish Massage", "Hot Stone", "Aromatherapy"],
             "experienceYears": 8,
             "rating": 4.9,
             "facilityId": "FAC-MAIN-01",
@@ -34,19 +80,11 @@
             "floor": 1,
             "yieldId": "YIELD-EARLY-BIRD",
             "yieldMultiplier": 0.8,
-            "bookingFee": 5,
-            "processingFee": 2.5,
+            "bookingFee": 5.00,
+            "processingFee": 2.50,
             "specialRequirements": [],
-            "equipmentProvided": [
-              "massage table",
-              "aromatherapy oils",
-              "heated blankets"
-            ],
-            "amenities": [
-              "private bathroom",
-              "shower",
-              "music selection"
-            ],
+            "equipmentProvided": ["massage table", "aromatherapy oils", "heated blankets"],
+            "amenities": ["private bathroom", "shower", "music selection"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-0900-T001-SPA001"
           },
@@ -59,11 +97,7 @@
             "firstName": "Michael",
             "lastName": "Chen",
             "gender": "male",
-            "certifications": [
-              "Swedish Massage",
-              "Deep Tissue",
-              "Sports Massage"
-            ],
+            "certifications": ["Swedish Massage", "Deep Tissue", "Sports Massage"],
             "experienceYears": 5,
             "rating": 4.7,
             "facilityId": "FAC-MAIN-01",
@@ -72,18 +106,12 @@
             "roomType": "standard",
             "floor": 1,
             "yieldId": "YIELD-STANDARD",
-            "yieldMultiplier": 1,
-            "bookingFee": 5,
-            "processingFee": 2.5,
+            "yieldMultiplier": 1.0,
+            "bookingFee": 5.00,
+            "processingFee": 2.50,
             "specialRequirements": [],
-            "equipmentProvided": [
-              "massage table",
-              "essential oils"
-            ],
-            "amenities": [
-              "private bathroom",
-              "music selection"
-            ],
+            "equipmentProvided": ["massage table", "essential oils"],
+            "amenities": ["private bathroom", "music selection"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-1000-T002-SPA001"
           },
@@ -96,11 +124,7 @@
             "firstName": "Sarah",
             "lastName": "Johnson",
             "gender": "female",
-            "certifications": [
-              "Swedish Massage",
-              "Hot Stone",
-              "Aromatherapy"
-            ],
+            "certifications": ["Swedish Massage", "Hot Stone", "Aromatherapy"],
             "experienceYears": 8,
             "rating": 4.9,
             "facilityId": "FAC-MAIN-01",
@@ -109,22 +133,14 @@
             "roomType": "deluxe",
             "floor": 1,
             "yieldId": null,
-            "yieldMultiplier": 1,
-            "bookingFee": 5,
-            "processingFee": 2.5,
+            "yieldMultiplier": 1.0,
+            "bookingFee": 5.00,
+            "processingFee": 2.50,
             "bookingId": "BK-2024-03-15-001",
             "bookedUntil": "2024-03-15T12:00:00Z",
             "specialRequirements": [],
-            "equipmentProvided": [
-              "massage table",
-              "aromatherapy oils",
-              "heated blankets"
-            ],
-            "amenities": [
-              "private bathroom",
-              "shower",
-              "music selection"
-            ],
+            "equipmentProvided": ["massage table", "aromatherapy oils", "heated blankets"],
+            "amenities": ["private bathroom", "shower", "music selection"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-1100-T001-SPA001"
           },
@@ -137,11 +153,7 @@
             "firstName": "Sarah",
             "lastName": "Johnson",
             "gender": "female",
-            "certifications": [
-              "Swedish Massage",
-              "Hot Stone",
-              "Aromatherapy"
-            ],
+            "certifications": ["Swedish Massage", "Hot Stone", "Aromatherapy"],
             "experienceYears": 8,
             "rating": 4.9,
             "facilityId": "FAC-MAIN-01",
@@ -151,19 +163,11 @@
             "floor": 1,
             "yieldId": "YIELD-AFTERNOON",
             "yieldMultiplier": 0.9,
-            "bookingFee": 5,
-            "processingFee": 2.5,
+            "bookingFee": 5.00,
+            "processingFee": 2.50,
             "specialRequirements": [],
-            "equipmentProvided": [
-              "massage table",
-              "aromatherapy oils",
-              "heated blankets"
-            ],
-            "amenities": [
-              "private bathroom",
-              "shower",
-              "music selection"
-            ],
+            "equipmentProvided": ["massage table", "aromatherapy oils", "heated blankets"],
+            "amenities": ["private bathroom", "shower", "music selection"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-1400-T001-SPA001"
           },
@@ -176,11 +180,7 @@
             "firstName": "Michael",
             "lastName": "Chen",
             "gender": "male",
-            "certifications": [
-              "Swedish Massage",
-              "Deep Tissue",
-              "Sports Massage"
-            ],
+            "certifications": ["Swedish Massage", "Deep Tissue", "Sports Massage"],
             "experienceYears": 5,
             "rating": 4.7,
             "facilityId": "FAC-EAST-02",
@@ -190,20 +190,11 @@
             "floor": 2,
             "yieldId": "YIELD-AFTERNOON",
             "yieldMultiplier": 0.9,
-            "bookingFee": 5,
-            "processingFee": 2.5,
+            "bookingFee": 5.00,
+            "processingFee": 2.50,
             "specialRequirements": [],
-            "equipmentProvided": [
-              "massage table",
-              "essential oils",
-              "heated stones"
-            ],
-            "amenities": [
-              "private bathroom",
-              "shower",
-              "music selection",
-              "aromatherapy diffuser"
-            ],
+            "equipmentProvided": ["massage table", "essential oils", "heated stones"],
+            "amenities": ["private bathroom", "shower", "music selection", "aromatherapy diffuser"],
             "wheelchairAccessible": false,
             "slotId": "SLOT-20240315-1500-T002-SPA001"
           },
@@ -216,11 +207,7 @@
             "firstName": "Sarah",
             "lastName": "Johnson",
             "gender": "female",
-            "certifications": [
-              "Swedish Massage",
-              "Hot Stone",
-              "Aromatherapy"
-            ],
+            "certifications": ["Swedish Massage", "Hot Stone", "Aromatherapy"],
             "experienceYears": 8,
             "rating": 4.9,
             "facilityId": "FAC-MAIN-01",
@@ -230,30 +217,17 @@
             "floor": 1,
             "yieldId": "YIELD-LATE",
             "yieldMultiplier": 0.85,
-            "bookingFee": 5,
-            "processingFee": 2.5,
+            "bookingFee": 5.00,
+            "processingFee": 2.50,
             "specialRequirements": [],
-            "equipmentProvided": [
-              "massage table",
-              "aromatherapy oils",
-              "heated blankets"
-            ],
-            "amenities": [
-              "private bathroom",
-              "shower",
-              "music selection"
-            ],
+            "equipmentProvided": ["massage table", "aromatherapy oils", "heated blankets"],
+            "amenities": ["private bathroom", "shower", "music selection"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-1630-T001-SPA001"
           }
         ]
       },
-      {
-        "serviceId": "spa-002",
-        "serviceName": "90-Minute Deep Tissue Massage",
-        "duration": 90,
-        "price": 165,
-        "currency": "USD",
+      "spa-002": {
         "slots": [
           {
             "startTime": "09:00",
@@ -264,12 +238,7 @@
             "firstName": "Emma",
             "lastName": "Wilson",
             "gender": "female",
-            "certifications": [
-              "Deep Tissue",
-              "Sports Massage",
-              "Trigger Point Therapy",
-              "Prenatal Massage"
-            ],
+            "certifications": ["Deep Tissue", "Sports Massage", "Trigger Point Therapy", "Prenatal Massage"],
             "experienceYears": 12,
             "rating": 4.95,
             "facilityId": "FAC-MAIN-01",
@@ -279,25 +248,11 @@
             "floor": 1,
             "yieldId": "YIELD-EARLY-BIRD",
             "yieldMultiplier": 0.85,
-            "bookingFee": 7.5,
-            "processingFee": 3,
-            "specialRequirements": [
-              "specialty equipment",
-              "extended prep time"
-            ],
-            "equipmentProvided": [
-              "massage table",
-              "deep tissue tools",
-              "hot towels",
-              "cupping set"
-            ],
-            "amenities": [
-              "private bathroom",
-              "shower",
-              "music selection",
-              "aromatherapy diffuser",
-              "chromotherapy lighting"
-            ],
+            "bookingFee": 7.50,
+            "processingFee": 3.00,
+            "specialRequirements": ["specialty equipment", "extended prep time"],
+            "equipmentProvided": ["massage table", "deep tissue tools", "hot towels", "cupping set"],
+            "amenities": ["private bathroom", "shower", "music selection", "aromatherapy diffuser", "chromotherapy lighting"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-0900-T003-SPA002"
           },
@@ -310,12 +265,7 @@
             "firstName": "Emma",
             "lastName": "Wilson",
             "gender": "female",
-            "certifications": [
-              "Deep Tissue",
-              "Sports Massage",
-              "Trigger Point Therapy",
-              "Prenatal Massage"
-            ],
+            "certifications": ["Deep Tissue", "Sports Massage", "Trigger Point Therapy", "Prenatal Massage"],
             "experienceYears": 12,
             "rating": 4.95,
             "facilityId": "FAC-MAIN-01",
@@ -325,25 +275,11 @@
             "floor": 1,
             "yieldId": "YIELD-PEAK",
             "yieldMultiplier": 1.15,
-            "bookingFee": 7.5,
-            "processingFee": 3,
-            "specialRequirements": [
-              "specialty equipment",
-              "extended prep time"
-            ],
-            "equipmentProvided": [
-              "massage table",
-              "deep tissue tools",
-              "hot towels",
-              "cupping set"
-            ],
-            "amenities": [
-              "private bathroom",
-              "shower",
-              "music selection",
-              "aromatherapy diffuser",
-              "chromotherapy lighting"
-            ],
+            "bookingFee": 7.50,
+            "processingFee": 3.00,
+            "specialRequirements": ["specialty equipment", "extended prep time"],
+            "equipmentProvided": ["massage table", "deep tissue tools", "hot towels", "cupping set"],
+            "amenities": ["private bathroom", "shower", "music selection", "aromatherapy diffuser", "chromotherapy lighting"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-1300-T003-SPA002"
           },
@@ -356,12 +292,7 @@
             "firstName": "Emma",
             "lastName": "Wilson",
             "gender": "female",
-            "certifications": [
-              "Deep Tissue",
-              "Sports Massage",
-              "Trigger Point Therapy",
-              "Prenatal Massage"
-            ],
+            "certifications": ["Deep Tissue", "Sports Massage", "Trigger Point Therapy", "Prenatal Massage"],
             "experienceYears": 12,
             "rating": 4.95,
             "facilityId": "FAC-MAIN-01",
@@ -370,40 +301,21 @@
             "roomType": "premium",
             "floor": 1,
             "yieldId": null,
-            "yieldMultiplier": 1,
-            "bookingFee": 7.5,
-            "processingFee": 3,
+            "yieldMultiplier": 1.0,
+            "bookingFee": 7.50,
+            "processingFee": 3.00,
             "bookingId": "BK-2024-03-15-002",
             "bookedUntil": "2024-03-15T16:30:00Z",
             "customerNotes": "Requesting focus on lower back",
-            "specialRequirements": [
-              "specialty equipment",
-              "extended prep time"
-            ],
-            "equipmentProvided": [
-              "massage table",
-              "deep tissue tools",
-              "hot towels",
-              "cupping set"
-            ],
-            "amenities": [
-              "private bathroom",
-              "shower",
-              "music selection",
-              "aromatherapy diffuser",
-              "chromotherapy lighting"
-            ],
+            "specialRequirements": ["specialty equipment", "extended prep time"],
+            "equipmentProvided": ["massage table", "deep tissue tools", "hot towels", "cupping set"],
+            "amenities": ["private bathroom", "shower", "music selection", "aromatherapy diffuser", "chromotherapy lighting"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-1500-T003-SPA002"
           }
         ]
       },
-      {
-        "serviceId": "spa-003",
-        "serviceName": "30-Minute Express Facial",
-        "duration": 30,
-        "price": 75,
-        "currency": "USD",
+      "spa-003": {
         "slots": [
           {
             "startTime": "10:00",
@@ -414,11 +326,7 @@
             "firstName": "Lisa",
             "lastName": "Anderson",
             "gender": "female",
-            "certifications": [
-              "Facial Specialist",
-              "Skin Care",
-              "Anti-Aging Treatments"
-            ],
+            "certifications": ["Facial Specialist", "Skin Care", "Anti-Aging Treatments"],
             "experienceYears": 6,
             "rating": 4.8,
             "facilityId": "FAC-EAST-02",
@@ -428,22 +336,11 @@
             "floor": 2,
             "yieldId": "YIELD-MORNING",
             "yieldMultiplier": 0.88,
-            "bookingFee": 3,
-            "processingFee": 1.5,
-            "specialRequirements": [
-              "facial equipment"
-            ],
-            "equipmentProvided": [
-              "facial bed",
-              "steamer",
-              "LED light therapy",
-              "skincare products"
-            ],
-            "amenities": [
-              "private bathroom",
-              "robe provided",
-              "facial analysis"
-            ],
+            "bookingFee": 3.00,
+            "processingFee": 1.50,
+            "specialRequirements": ["facial equipment"],
+            "equipmentProvided": ["facial bed", "steamer", "LED light therapy", "skincare products"],
+            "amenities": ["private bathroom", "robe provided", "facial analysis"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-1000-T004-SPA003"
           },
@@ -456,11 +353,7 @@
             "firstName": "Lisa",
             "lastName": "Anderson",
             "gender": "female",
-            "certifications": [
-              "Facial Specialist",
-              "Skin Care",
-              "Anti-Aging Treatments"
-            ],
+            "certifications": ["Facial Specialist", "Skin Care", "Anti-Aging Treatments"],
             "experienceYears": 6,
             "rating": 4.8,
             "facilityId": "FAC-EAST-02",
@@ -470,22 +363,11 @@
             "floor": 2,
             "yieldId": "YIELD-MORNING",
             "yieldMultiplier": 0.88,
-            "bookingFee": 3,
-            "processingFee": 1.5,
-            "specialRequirements": [
-              "facial equipment"
-            ],
-            "equipmentProvided": [
-              "facial bed",
-              "steamer",
-              "LED light therapy",
-              "skincare products"
-            ],
-            "amenities": [
-              "private bathroom",
-              "robe provided",
-              "facial analysis"
-            ],
+            "bookingFee": 3.00,
+            "processingFee": 1.50,
+            "specialRequirements": ["facial equipment"],
+            "equipmentProvided": ["facial bed", "steamer", "LED light therapy", "skincare products"],
+            "amenities": ["private bathroom", "robe provided", "facial analysis"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-1030-T004-SPA003"
           },
@@ -498,11 +380,7 @@
             "firstName": "Lisa",
             "lastName": "Anderson",
             "gender": "female",
-            "certifications": [
-              "Facial Specialist",
-              "Skin Care",
-              "Anti-Aging Treatments"
-            ],
+            "certifications": ["Facial Specialist", "Skin Care", "Anti-Aging Treatments"],
             "experienceYears": 6,
             "rating": 4.8,
             "facilityId": "FAC-EAST-02",
@@ -511,23 +389,12 @@
             "roomType": "facial_suite",
             "floor": 2,
             "yieldId": "YIELD-STANDARD",
-            "yieldMultiplier": 1,
-            "bookingFee": 3,
-            "processingFee": 1.5,
-            "specialRequirements": [
-              "facial equipment"
-            ],
-            "equipmentProvided": [
-              "facial bed",
-              "steamer",
-              "LED light therapy",
-              "skincare products"
-            ],
-            "amenities": [
-              "private bathroom",
-              "robe provided",
-              "facial analysis"
-            ],
+            "yieldMultiplier": 1.0,
+            "bookingFee": 3.00,
+            "processingFee": 1.50,
+            "specialRequirements": ["facial equipment"],
+            "equipmentProvided": ["facial bed", "steamer", "LED light therapy", "skincare products"],
+            "amenities": ["private bathroom", "robe provided", "facial analysis"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-1100-T004-SPA003"
           },
@@ -540,11 +407,7 @@
             "firstName": "Lisa",
             "lastName": "Anderson",
             "gender": "female",
-            "certifications": [
-              "Facial Specialist",
-              "Skin Care",
-              "Anti-Aging Treatments"
-            ],
+            "certifications": ["Facial Specialist", "Skin Care", "Anti-Aging Treatments"],
             "experienceYears": 6,
             "rating": 4.8,
             "facilityId": "FAC-EAST-02",
@@ -553,25 +416,14 @@
             "roomType": "facial_suite",
             "floor": 2,
             "yieldId": null,
-            "yieldMultiplier": 1,
-            "bookingFee": 3,
-            "processingFee": 1.5,
+            "yieldMultiplier": 1.0,
+            "bookingFee": 3.00,
+            "processingFee": 1.50,
             "bookingId": "BK-2024-03-15-003",
             "bookedUntil": "2024-03-15T14:30:00Z",
-            "specialRequirements": [
-              "facial equipment"
-            ],
-            "equipmentProvided": [
-              "facial bed",
-              "steamer",
-              "LED light therapy",
-              "skincare products"
-            ],
-            "amenities": [
-              "private bathroom",
-              "robe provided",
-              "facial analysis"
-            ],
+            "specialRequirements": ["facial equipment"],
+            "equipmentProvided": ["facial bed", "steamer", "LED light therapy", "skincare products"],
+            "amenities": ["private bathroom", "robe provided", "facial analysis"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-1400-T004-SPA003"
           },
@@ -584,11 +436,7 @@
             "firstName": "Lisa",
             "lastName": "Anderson",
             "gender": "female",
-            "certifications": [
-              "Facial Specialist",
-              "Skin Care",
-              "Anti-Aging Treatments"
-            ],
+            "certifications": ["Facial Specialist", "Skin Care", "Anti-Aging Treatments"],
             "experienceYears": 6,
             "rating": 4.8,
             "facilityId": "FAC-EAST-02",
@@ -598,22 +446,11 @@
             "floor": 2,
             "yieldId": "YIELD-AFTERNOON",
             "yieldMultiplier": 0.9,
-            "bookingFee": 3,
-            "processingFee": 1.5,
-            "specialRequirements": [
-              "facial equipment"
-            ],
-            "equipmentProvided": [
-              "facial bed",
-              "steamer",
-              "LED light therapy",
-              "skincare products"
-            ],
-            "amenities": [
-              "private bathroom",
-              "robe provided",
-              "facial analysis"
-            ],
+            "bookingFee": 3.00,
+            "processingFee": 1.50,
+            "specialRequirements": ["facial equipment"],
+            "equipmentProvided": ["facial bed", "steamer", "LED light therapy", "skincare products"],
+            "amenities": ["private bathroom", "robe provided", "facial analysis"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-1430-T004-SPA003"
           },
@@ -626,11 +463,7 @@
             "firstName": "Lisa",
             "lastName": "Anderson",
             "gender": "female",
-            "certifications": [
-              "Facial Specialist",
-              "Skin Care",
-              "Anti-Aging Treatments"
-            ],
+            "certifications": ["Facial Specialist", "Skin Care", "Anti-Aging Treatments"],
             "experienceYears": 6,
             "rating": 4.8,
             "facilityId": "FAC-MAIN-01",
@@ -640,27 +473,103 @@
             "floor": 1,
             "yieldId": "YIELD-LATE",
             "yieldMultiplier": 0.85,
-            "bookingFee": 3,
-            "processingFee": 1.5,
-            "specialRequirements": [
-              "facial equipment"
-            ],
-            "equipmentProvided": [
-              "facial bed",
-              "steamer",
-              "LED light therapy",
-              "skincare products"
-            ],
-            "amenities": [
-              "private bathroom",
-              "robe provided",
-              "facial analysis"
-            ],
+            "bookingFee": 3.00,
+            "processingFee": 1.50,
+            "specialRequirements": ["facial equipment"],
+            "equipmentProvided": ["facial bed", "steamer", "LED light therapy", "skincare products"],
+            "amenities": ["private bathroom", "robe provided", "facial analysis"],
             "wheelchairAccessible": true,
             "slotId": "SLOT-20240315-1600-T004-SPA003"
           }
         ]
       }
-    ]
+    },
+    "2024-03-16": {
+      "spa-001": {
+        "slots": [
+          {
+            "startTime": "09:00",
+            "endTime": "10:00",
+            "available": true,
+            "therapistId": "T001",
+            "therapistName": "Sarah Johnson",
+            "firstName": "Sarah",
+            "lastName": "Johnson",
+            "gender": "female",
+            "certifications": ["Swedish Massage", "Hot Stone", "Aromatherapy"],
+            "experienceYears": 8,
+            "rating": 4.9,
+            "facilityId": "FAC-MAIN-01",
+            "facilityName": "Main Spa Building",
+            "roomNumber": "101",
+            "roomType": "deluxe",
+            "floor": 1,
+            "yieldId": "YIELD-WEEKEND-EARLY",
+            "yieldMultiplier": 0.95,
+            "bookingFee": 5.00,
+            "processingFee": 2.50,
+            "specialRequirements": [],
+            "equipmentProvided": ["massage table", "aromatherapy oils", "heated blankets"],
+            "amenities": ["private bathroom", "shower", "music selection"],
+            "wheelchairAccessible": true,
+            "slotId": "SLOT-20240316-0900-T001-SPA001"
+          },
+          {
+            "startTime": "10:00",
+            "endTime": "11:00",
+            "available": true,
+            "therapistId": "T001",
+            "therapistName": "Sarah Johnson",
+            "firstName": "Sarah",
+            "lastName": "Johnson",
+            "gender": "female",
+            "certifications": ["Swedish Massage", "Hot Stone", "Aromatherapy"],
+            "experienceYears": 8,
+            "rating": 4.9,
+            "facilityId": "FAC-MAIN-01",
+            "facilityName": "Main Spa Building",
+            "roomNumber": "101",
+            "roomType": "deluxe",
+            "floor": 1,
+            "yieldId": "YIELD-WEEKEND-PEAK",
+            "yieldMultiplier": 1.2,
+            "bookingFee": 5.00,
+            "processingFee": 2.50,
+            "specialRequirements": [],
+            "equipmentProvided": ["massage table", "aromatherapy oils", "heated blankets"],
+            "amenities": ["private bathroom", "shower", "music selection"],
+            "wheelchairAccessible": true,
+            "slotId": "SLOT-20240316-1000-T001-SPA001"
+          },
+          {
+            "startTime": "14:00",
+            "endTime": "15:00",
+            "available": true,
+            "therapistId": "T002",
+            "therapistName": "Michael Chen",
+            "firstName": "Michael",
+            "lastName": "Chen",
+            "gender": "male",
+            "certifications": ["Swedish Massage", "Deep Tissue", "Sports Massage"],
+            "experienceYears": 5,
+            "rating": 4.7,
+            "facilityId": "FAC-EAST-02",
+            "facilityName": "East Wing Wellness Center",
+            "roomNumber": "205",
+            "roomType": "premium",
+            "floor": 2,
+            "yieldId": "YIELD-WEEKEND-AFTERNOON",
+            "yieldMultiplier": 1.1,
+            "bookingFee": 5.00,
+            "processingFee": 2.50,
+            "specialRequirements": [],
+            "equipmentProvided": ["massage table", "essential oils", "heated stones"],
+            "amenities": ["private bathroom", "shower", "music selection", "aromatherapy diffuser"],
+            "wheelchairAccessible": false,
+            "slotId": "SLOT-20240316-1400-T002-SPA001"
+          }
+        ]
+      }
+    }
   }
 }
